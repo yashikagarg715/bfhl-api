@@ -52,28 +52,7 @@ public class BfhlServiceImpl implements BfhlService {
             }
         }
 
-        // ── Step 2: Build concat_string ────────────────────────────────────
-        //
-        // Rule:
-        //   1. Collect every individual alphabetical character from the input
-        //      (iterate each element char-by-char, pick only letters)
-        //   2. Reverse the collected string
-        //   3. Apply alternating caps  (index 0 → upper, 1 → lower, 2 → upper …)
-        //
-        // Example A:  data = ["a","1","334","4","R","$"]
-        //   letters collected  → "aR"
-        //   reversed           → "Ra"
-        //   alternating caps   → "Ra"   ✓
-        //
-        // Example B:  data = ["2","a","y","4","&","-","*","5","92","b"]
-        //   letters collected  → "ayb"
-        //   reversed           → "bya"
-        //   alternating caps   → "ByA"  ✓
-        //
-        // Example C:  data = ["A","ABCD","DOE"]
-        //   letters collected  → "AABCDDOE"
-        //   reversed           → "EODDCBAA"
-        //   alternating caps   → "EoDdCbAa" ✓
+
 
         StringBuilder lettersCollected = new StringBuilder();
         for (String item : data) {
@@ -87,7 +66,7 @@ public class BfhlServiceImpl implements BfhlService {
         String reversed = lettersCollected.reverse().toString();
         String concatString = applyAlternatingCaps(reversed);
 
-        // ── Step 3: Build and return the response ──────────────────────────
+
         return BfhlResponse.builder()
                 .isSuccess(true)
                 .userId(FULL_NAME + "_" + DOB)
@@ -102,7 +81,7 @@ public class BfhlServiceImpl implements BfhlService {
                 .build();
     }
 
-    // ── Helpers ────────────────────────────────────────────────────────────
+
 
     /**
      * Returns true if the entire token represents an integer (positive or negative).
